@@ -9,6 +9,23 @@ root.config(background="white")
 menubar=Menu(root)
 
 
+def bar():
+    import time
+    progress["value"]=20
+    root.update_idletasks()
+    time.sleep(1)
+    progress["value"]=40
+    root.update_idletasks()
+    time.sleep(1)
+    progress["value"]=60
+    root.update_idletasks()
+    time.sleep(1)
+    progress["value"]=80
+    root.update_idletasks()
+    time.sleep(1)
+    progress["value"]=100
+
+
 
 
 
@@ -73,16 +90,16 @@ m2.add_cascade(label="exit",command=root.destroy)
 m3=Menu(menubar,tearoff=0)
 menubar.add_cascade(label="start",menu=m3)
 #only label
-m3.add_command(label="progress",command=None)
+m3.add_command(label="progress",command=bar)
+
+m3.add_command(label="spin box",command=bar)
 
 
-
-progress=Progressbar(root,orient=HORIZONTAL,length=101,mode="determinate")
-def bar():
-    import time
-    progress["value"]=20.2
-    root.update_idletasks()
-    time.sleep(1)
+progress=Progressbar(root,orient=HORIZONTAL,length=100,mode="determinate")
+progress.pack(pady=100)
+    
+b=Spinbox(root,from_=0,to=100)
+b.pack(pady=25)
 
 #run code
 root.config(menu=menubar)
